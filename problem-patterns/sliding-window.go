@@ -7,7 +7,7 @@ import (
 // finding the maximum sum of subarray with size k
 // fixed size
 func maxSum(nums []int, k int) int {
-	
+
 	sum := 0
 
 	for i := 0; i < k; i++ {
@@ -15,7 +15,7 @@ func maxSum(nums []int, k int) int {
 	}
 	maxSum := sum
 
-	for i := k; i <  len(nums); i++ {
+	for i := k; i < len(nums); i++ {
 		sum += nums[i]
 		sum -= nums[i-k]
 
@@ -31,7 +31,7 @@ func maxSum(nums []int, k int) int {
 // Find the length of the longest substring without repeating characters.
 
 func lengthOfLongestSubstring(s string) int {
-	
+
 	left := 0
 	maxLen := 0
 	seen := make(map[byte]bool)
@@ -52,7 +52,7 @@ func lengthOfLongestSubstring(s string) int {
 			maxLen = right - left + 1
 		}
 	}
-	
+
 	return maxLen
 
 }
@@ -65,7 +65,7 @@ func minSubArrayLen(target int, nums []int) int {
 
 	for right := 0; right < len(nums); right++ {
 		sum += nums[right]
-		
+
 		for sum >= target {
 			if right-left+1 < minLen {
 				minLen = right - left + 1
@@ -88,7 +88,6 @@ func lengthOfLongestSubstringKDistinct(s string, k int) int {
 	left := 0
 	maxLen := 0
 	count := make(map[byte]int)
-
 
 	for right := 0; right < len(s); right++ {
 		count[s[right]]++

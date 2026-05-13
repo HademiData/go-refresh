@@ -153,7 +153,6 @@ func search(nums []int, target int) int {
 
 // piles = [3,6,7,11]
 // h = 8
-
 func minEatingSpeed(piles []int, h int) int {
 	left := 1
 	right := 0
@@ -185,4 +184,45 @@ func minEatingSpeed(piles []int, h int) int {
 	}
 
 	return ans
+}
+
+// Find minimum ship capacity needed to transport packages within days.
+
+func shipWithinDays(weights []int, days int) int {
+
+	left := 0
+	right := 0
+
+	for _, w := range weights {
+		if w > left {
+			left = w
+		}
+		right += w
+	}
+
+	for left < right {
+
+		mid := left + (right-left)/2
+
+		neededDays := 1
+		cur := 0
+
+		for _, w := range weights {
+
+			if cur+w > mid {
+				neededDays++
+				cur = 0
+			}
+
+			cur += w
+		}
+
+		if neededDays <= days {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+
+	return left
 }
