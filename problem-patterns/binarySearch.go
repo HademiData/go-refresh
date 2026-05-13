@@ -144,3 +144,45 @@ func search(nums []int, target int) int {
 
 	return -1
 }
+
+// Koko eats bananas at speed k.
+
+// Find MINIMUM speed needed to finish within h hours.
+
+// Example:
+
+// piles = [3,6,7,11]
+// h = 8
+
+func minEatingSpeed(piles []int, h int) int {
+	left := 1
+	right := 0
+
+	for _, p := range piles {
+		if p > right {
+			right = p
+		}
+	}
+
+	ans := right
+
+	for left <= right {
+
+		mid := left + (right-left)/2
+
+		hours := 0
+
+		for _, p := range piles {
+			hours += (p + mid - 1) / mid
+		}
+
+		if hours <= h {
+			ans = mid
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+
+	return ans
+}
