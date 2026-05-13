@@ -65,7 +65,7 @@ func minSubArrayLen(target int, nums []int) int {
 
 	for right := 0; right < len(nums); right++ {
 		sum += nums[right]
-
+		
 		for sum >= target {
 			if right-left+1 < minLen {
 				minLen = right - left + 1
@@ -75,6 +75,7 @@ func minSubArrayLen(target int, nums []int) int {
 			left++
 		}
 	}
+
 	if minLen == math.MaxInt32 {
 		return 0
 	}
@@ -83,11 +84,11 @@ func minSubArrayLen(target int, nums []int) int {
 }
 
 // At Most K Distinct Characters
-
 func lengthOfLongestSubstringKDistinct(s string, k int) int {
 	left := 0
 	maxLen := 0
 	count := make(map[byte]int)
+
 
 	for right := 0; right < len(s); right++ {
 		count[s[right]]++
